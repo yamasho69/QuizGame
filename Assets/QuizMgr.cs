@@ -10,11 +10,14 @@ using System;//これがないとGuidクラスは使えない
 public class QuizMgr: MonoBehaviour {
     public TextAsset csvFile;	　　　　　// GUIでcsvファイルを割当
 　　　　List<string[]> csvDatas = new List<string[]>(); //ここは参考ブログとは違う
-    public static string AnswerStr;
+    public static string AnswerStr;//問題の答え
+    int[] Order1 = null; //出題数を管理するメンバ変数
+    int[] Order2;　//出題をランダムにするメンバ変数
+    public int Count = 1; //今何問目か
 
 
 　　　　//スタート時、CSVファイルを読み込む
-　　　　void Start() {
+　　　　public void Start() {
 
 　　　　　　　　// 格納
 　　　　　　　　string[] lines = csvFile.text.Replace("\r\n", "\n").Split("\n"[0]);
@@ -24,9 +27,20 @@ public class QuizMgr: MonoBehaviour {
 　　　　　　　　}
 
 　　　　　　　　// 書き出し
-　　　　　　　　Debug.Log(csvDatas.Count);　　　　　　　　　// 行数
-　　　　　　　　Debug.Log(csvDatas[0].Length);　　　　　　　// 項目数
-　　　　　　　　Debug.Log(csvDatas[1][2]);        // 2行目3列目
+　　　　　　　　//Debug.Log(csvDatas.Count);　　　　　　　　　// 行数
+　　　　　　　　//Debug.Log(csvDatas[0].Length);　　　　　　　// 項目数
+　　　　　　　　//Debug.Log(csvDatas[1][2]);        // 2行目3列目
+
+        this.Order1 = new int[csvDatas.Count];　//配列の要素数をCSVの行数分にする
+        //配列に順番に数字を入れる
+        for(int i = 0; i < csvDatas.Count-1; i++) {
+            Order1[i] = i;
+        }
+        //配列の数字をランダムに入れ替えた配列を作成
+        this.Order2 = Order1.OrderBy(i => Guid.NewGuid()).ToArray();
+        //Debug.Log(Order1[33]); 
+        //Debug.Log(Order2[33]);
+
 
         //問題をセットするメソッドを呼び出す
         QuizSet();
@@ -43,7 +57,7 @@ public class QuizMgr: MonoBehaviour {
         for (int i =0; i < csvDatas.Count; i++) {
 
             //答えをセット
-            AnswerStr = csvDatas[i][1];
+            AnswerStr = csvDatas[Order2[Count]][1];
             //特定の名前のオブジェクトを検索してアクセス
             Text question = GameObject.Find("Quiz/Question").GetComponentInChildren<Text>();
             Text button1 = GameObject.Find("Quiz/Button1").GetComponentInChildren<Text>();
@@ -51,23 +65,12 @@ public class QuizMgr: MonoBehaviour {
             Text button3 = GameObject.Find("Quiz/Button3").GetComponentInChildren<Text>();
             Text button4 = GameObject.Find("Quiz/Button4").GetComponentInChildren<Text>();
             //データをセットすることで、既存情報を上書きできる
-            question.text = csvDatas[i][0];//問題文セット
-            button1.text = csvDatas[i][ary2[0]];//ary2の１番目に入っている数字の項目をボタン１にセット
-            button2.text = csvDatas[i][ary2[1]];//ary2の２番目に入っている数字の項目をボタン２にセット
-            button3.text = csvDatas[i][ary2[2]];//ary2の３番目に入っている数字の項目をボタン３にセット
-            button4.text = csvDatas[i][ary2[3]];//ary2の４番目に入っている数字の項目をボタン４にセット
+            question.text = csvDatas[Order2[Count]][0];//問題文セット
+            button1.text = csvDatas[Order2[Count]][ary2[0]];//ary2の１番目に入っている数字の項目をボタン１にセット
+            button2.text = csvDatas[Order2[Count]][ary2[1]];//ary2の２番目に入っている数字の項目をボタン２にセット
+            button3.text = csvDatas[Order2[Count]][ary2[2]];//ary2の３番目に入っている数字の項目をボタン３にセット
+            button4.text = csvDatas[Order2[Count]][ary2[3]];//ary2の４番目に入っている数字の項目をボタン４にセット
         }
-    }
-
-    //問題の正誤を判定するメソッド
-    public static void JudgeAnswer() {
-        NewMethod();
-    }
-
-    private static void NewMethod() {
-        if (Judge.selectedBtn.text == "中華人民共和国") {
-            Debug.Log("正解！");
-        } else { Debug.Log("不正解！"); }
     }
 }
 
