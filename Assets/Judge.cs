@@ -23,10 +23,11 @@ public class Judge : MonoBehaviour {
         //選択したボタンのテキストラベルと問題の答えを比較
         if (selectedBtn.text == QuizMgr.AnswerStr) {
             Debug.Log("正解");
-            quizMgr.Score += 10;
+            quizMgr.Score += 1;
         } else {
             Debug.Log("不正解");
         }
+        iTween.Stop();
         quizMgr.NextQuizSet();//上記で作成したオブジェクトを使用する
     }
 }

@@ -13,14 +13,18 @@ public class QuizMgr: MonoBehaviour {
     public int[] Order2;　//出題をランダムにするメンバ変数
     public static int Count = 1; //今何問目か
     public int Score = 0; //得点
+    public float countTime = 9.9f;
+    GameObject gauge;
+    TimeScript timeSc;
 
 　　　　//スタート時、CSVファイルを読み込む
 　　　　public void Start() {
 
         Judge judge = GetComponent<Judge>();
 
-　　　　　　　　// 格納
-　　　　　　　　string[] lines = csvFile.text.Replace("\r\n", "\n").Split("\n"[0]);
+
+    // 格納
+    string[] lines = csvFile.text.Replace("\r\n", "\n").Split("\n"[0]);
         foreach (var line in lines) {
             if (line == "") { continue; }
             csvDatas.Add(line.Split(','));　　　　// string[]を追加している
@@ -37,11 +41,23 @@ public class QuizMgr: MonoBehaviour {
         //問題をセットするメソッドを呼び出す
         QuizSet();
 　　　　}
+
+    public void Update() {
+        countTime -= Time.deltaTime; //スタートしてからの秒数を格納
+        Text time = GameObject.Find("Timer/TimeText").GetComponentInChildren<Text>();//TimeText取得
+        time.text = countTime.ToString("F1");//TimeTextに経過時間を入れる。F1＝小数第一位まで。
+        
+
+        if (countTime <= 0) {
+            NextQuizSet();
+        }
+    }
+
     //問題をセットするメソッド
     void  QuizSet() {
 
         //1から4の配列(ary1)を作成
-        int[] ary1 = new int[] {1, 2, 3, 4};
+        int[] ary1 = new int[] {1, 2, 3, 4};//正解は１
         //ary1をランダムに並び替えたary2を作成
         int[] ary2 = ary1.OrderBy(i => Guid.NewGuid()).ToArray();
 
@@ -62,7 +78,20 @@ public class QuizMgr: MonoBehaviour {
     }
     public void NextQuizSet() {
         Count++;
-        Debug.Log(Count);
+
+        Text scorept = GameObject.Find("Quiz/ScorePoint").GetComponentInChildren<Text>();//スコア表示部分を取得
+        Text questionno = GameObject.Find("Quiz/QuestionNumber").GetComponentInChildren<Text>();//何問目かの表示部分を取得
+
+        gauge = GameObject.Find("Timer/Gauge"); //TimeScriptをオブジェクトの名前から取得して変数に格納する
+        timeSc = gauge.GetComponent<TimeScript>();//Scはスクリプト、scriptはオブジェクト
+
+        scorept.text = Score.ToString();//得点を更新
+        questionno.text = Count.ToString();//今何問目かを更新
+        countTime = 9.9f;
+        timeSc.time = 9.9f;//ゲージの減少時間を再設定
+        timeSc.Start();//ゲージを最大値に戻すメソッド
+
+        //Debug.Log(Count);
         if(Count == 11) {
         } else {QuizSet();}
     }
