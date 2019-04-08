@@ -17,14 +17,20 @@ public class QuizMgr: MonoBehaviour {
     GameObject gauge;
     TimeScript timeSc;
 
+    GameObject unitychan;
+    UnityChanController unitychanCon;
+
 　　　　//スタート時、CSVファイルを読み込む
 　　　　public void Start() {
 
         Judge judge = GetComponent<Judge>();
 
+        unitychan = GameObject.Find("unitychan");
+        unitychanCon = unitychan.GetComponent<UnityChanController>();
 
-    // 格納
-    string[] lines = csvFile.text.Replace("\r\n", "\n").Split("\n"[0]);
+
+        // 格納
+        string[] lines = csvFile.text.Replace("\r\n", "\n").Split("\n"[0]);
         foreach (var line in lines) {
             if (line == "") { continue; }
             csvDatas.Add(line.Split(','));　　　　// string[]を追加している
@@ -49,6 +55,8 @@ public class QuizMgr: MonoBehaviour {
         
 
         if (countTime <= 0) {
+            unitychanCon.TimeUp();
+            iTween.Stop();//ゲージの動きをストップさせる
             NextQuizSet();
         }
     }
@@ -83,7 +91,7 @@ public class QuizMgr: MonoBehaviour {
         Text questionno = GameObject.Find("Quiz/QuestionNumber").GetComponentInChildren<Text>();//何問目かの表示部分を取得
 
         gauge = GameObject.Find("Timer/Gauge"); //TimeScriptをオブジェクトの名前から取得して変数に格納する
-        timeSc = gauge.GetComponent<TimeScript>();//Scはスクリプト、scriptはオブジェクト
+        timeSc = gauge.GetComponent<TimeScript>();//Scはスクリプト、gaugeはオブジェクト
 
         scorept.text = Score.ToString();//得点を更新
         questionno.text = Count.ToString();//今何問目かを更新
