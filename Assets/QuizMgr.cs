@@ -86,7 +86,7 @@ public class QuizMgr: MonoBehaviour {
         //答えをセット
         AnswerStr = csvDatas[Order2[Count]][1];
             //特定の名前のオブジェクトを検索してアクセス
-            Text question = GameObject.Find("Quiz/Question").GetComponentInChildren<Text>();
+            Text question = GameObject.Find("Question/Question").GetComponentInChildren<Text>();
             Text button1 = GameObject.Find("Quiz/Button1").GetComponentInChildren<Text>();
             Text button2 = GameObject.Find("Quiz/Button2").GetComponentInChildren<Text>();
             Text button3 = GameObject.Find("Quiz/Button3").GetComponentInChildren<Text>();
