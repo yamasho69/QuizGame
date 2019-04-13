@@ -13,30 +13,77 @@ public class Judge : MonoBehaviour {
 
     GameObject unitychan;
     UnityChanController unitychanCon;
+    public bool buttonEnabled = true;
+
+    public GameObject button1;
+    public GameObject button2;
+    public GameObject button3;
+    public GameObject button4;
+
+    Judge judge1;//Button1のjudgeメソッド
+    Judge judge2;//Button2のjudgeメソッド
+    Judge judge3;//Button3のjudgeメソッド
+    Judge judge4;//Button4のjudgeメソッド
 
     //選択したボタンのテキストラベルと正解のテキストを比較して正誤を判定
     public void CapText() {
+        if (buttonEnabled == true) {
+            iTween.Stop();//ゲージの動きをストップさせる
 
-        quizmanager = GameObject.Find("QuizManager"); //QuizManagerをオブジェクトの名前から取得して変数に格納する
-        quizMgr = quizmanager.GetComponent<QuizMgr>();//Mgrはスクリプト、managerはオブジェクト
+            ButtonStop();
 
-        unitychan = GameObject.Find("unitychan");
-        unitychanCon = unitychan.GetComponent<UnityChanController>();
+            quizmanager = GameObject.Find("QuizManager"); //QuizManagerをオブジェクトの名前から取得して変数に格納する
+            quizMgr = quizmanager.GetComponent<QuizMgr>();//Mgrはスクリプト、managerはオブジェクト
+
+            unitychan = GameObject.Find("unitychan");
+            unitychanCon = unitychan.GetComponent<UnityChanController>();
+
+            quizMgr.timerStart = false;//タイマーを停止する
 
 
-        //選択したボタンのテキストラベルを取得する
-        Text selectedBtn = this.GetComponentInChildren<Text>();
-       
-        //選択したボタンのテキストラベルと問題の答えを比較
-        if (selectedBtn.text == QuizMgr.AnswerStr) {
-            Debug.Log("正解");
-            quizMgr.Score += 1;
-            unitychanCon.Correct();
-        } else {
-            Debug.Log("不正解");
-            unitychanCon.Wrong();
+            //選択したボタンのテキストラベルを取得する
+            Text selectedBtn = GetComponentInChildren<Text>();
+
+            //選択したボタンのテキストラベルと問題の答えを比較
+            if (selectedBtn.text == QuizMgr.AnswerStr) {
+                Debug.Log("正解");
+                quizMgr.Score += 1;
+                unitychanCon.Correct();
+            } else {
+                Debug.Log("不正解");
+                unitychanCon.Wrong();
+            }
+
+            Invoke("Qset", 3.0f);//3.0秒後にクイズを読み込む
         }
-        iTween.Stop();//ゲージの動きをストップさせる
-        quizMgr.NextQuizSet();//上記で作成したオブジェクトを使用する
+    }
+        public void Qset() {
+            quizmanager = GameObject.Find("QuizManager"); //1問目でタイムオーバーCapTextメソッドを行っていないため必要
+            quizMgr = quizmanager.GetComponent<QuizMgr>();//同上
+
+            judge1.buttonEnabled = true;// button1を有効にする
+            judge2.buttonEnabled = true;// button2を有効にする
+            judge3.buttonEnabled = true;// button3を有効にする
+            judge4.buttonEnabled = true;// button4を有効にする
+            quizMgr.NextQuizSet();
+        }//上記で作成したオブジェクトを使用する
+
+        public void ButtonStop() {
+        button1 = GameObject.Find("Button1");
+        judge1 = button1.GetComponent<Judge>();
+        judge1.buttonEnabled = false;// button1を押せなくする
+
+        button2 = GameObject.Find("Button2");
+        judge2 = button2.GetComponent<Judge>();// button2を押せなくする
+        judge2.buttonEnabled = false;
+
+        button3 = GameObject.Find("Button3");
+        judge3 = button3.GetComponent<Judge>();// button3を押せなくする
+        judge3.buttonEnabled = false;
+
+        button4 = GameObject.Find("Button4");
+        judge4 = button4.GetComponent<Judge>();// button4を押せなくする
+        judge4.buttonEnabled = false;
+
     }
 }

@@ -13,12 +13,16 @@ public class QuizMgr: MonoBehaviour {
     public int[] Order2;　//出題をランダムにするメンバ変数
     public static int Count = 1; //今何問目か
     public int Score = 0; //得点
-    public float countTime = 9.9f;
+    public float countTime = 19.9f;
+    public bool timerStart = true;//タイマーを動かすか
     GameObject gauge;
     TimeScript timeSc;
 
     GameObject unitychan;
     UnityChanController unitychanCon;
+
+    GameObject button1;
+    Judge judge;
 
 　　　　//スタート時、CSVファイルを読み込む
 　　　　public void Start() {
@@ -49,16 +53,26 @@ public class QuizMgr: MonoBehaviour {
 　　　　}
 
     public void Update() {
+        if (timerStart == true) {//タイマーの動きがあるとき
         countTime -= Time.deltaTime; //スタートしてからの秒数を格納
         Text time = GameObject.Find("Timer/TimeText").GetComponentInChildren<Text>();//TimeText取得
         time.text = countTime.ToString("F1");//TimeTextに経過時間を入れる。F1＝小数第一位まで。
-        
+    }
 
         if (countTime <= 0) {
             unitychanCon.TimeUp();
             iTween.Stop();//ゲージの動きをストップさせる
-            NextQuizSet();
+            timerStart = false; //タイマーの動きをストップする
+            button1 = GameObject.Find("Button1");
+            judge = button1.GetComponent<Judge>();
+            judge.ButtonStop();
+            countTime = 0.01f;//カウントが0のままだとNextQuizメソッドが何回も呼び出されてしまう
+            Invoke("TimeOver", 3.0f);//3.0f後にNextQuizメソッドを実行
         }
+    }
+
+    void TimeOver() {
+        judge.Qset();
     }
 
     //問題をセットするメソッド
@@ -95,9 +109,10 @@ public class QuizMgr: MonoBehaviour {
 
         scorept.text = Score.ToString();//得点を更新
         questionno.text = Count.ToString();//今何問目かを更新
-        countTime = 9.9f;
-        timeSc.time = 9.9f;//ゲージの減少時間を再設定
+        countTime = 19.9f;
+        timeSc.time = 19.9f;//ゲージの減少時間を再設定
         timeSc.Start();//ゲージを最大値に戻すメソッド
+        timerStart = true;//タイマーを動かす
 
         //Debug.Log(Count);
         if(Count == 11) {

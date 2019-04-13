@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TimeScript : MonoBehaviour {
 
-    public float time = 10.0f;
+    public float time = 20.0f;
 
     public void Start() {
         transform.localScale = new Vector3(120, 120, 120);//ゲージの大きさを最大にする。

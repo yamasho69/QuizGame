@@ -768,7 +768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -432.00003}
+  m_AnchoredPosition: {x: 0, y: -500}
   m_SizeDelta: {x: 650, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &358535421
@@ -782,6 +782,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0f90edd2987c14886bb32b3d570bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 1
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}
+  button4: {fileID: 0}
 --- !u!114 &358535422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,15 +882,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -1.02
       objectReference: {fileID: 0}
     - target: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 50
+      value: 50.28
       objectReference: {fileID: 0}
     - target: {fileID: 400326, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1051,15 +1056,15 @@ RectTransform:
   m_GameObject: {fileID: 572172985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9875, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 254102132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -400}
-  m_SizeDelta: {x: 650, y: 500}
+  m_AnchoredPosition: {x: -55, y: -422}
+  m_SizeDelta: {x: 550, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &572172987
 MonoBehaviour:
@@ -1541,7 +1546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -232.00002}
+  m_AnchoredPosition: {x: 0, y: -300}
   m_SizeDelta: {x: 650, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1383739227
@@ -1555,6 +1560,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0f90edd2987c14886bb32b3d570bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 1
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}
+  button4: {fileID: 0}
 --- !u!114 &1383739228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,7 +1870,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10.0
+  m_Text: 20.0
 --- !u!222 &1689572104
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1909,7 +1919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fecaec833c8ff1348aab852efe4fdfa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 10
+  time: 20
 --- !u!212 &1882799216
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1991,7 +2001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -332}
+  m_AnchoredPosition: {x: 0, y: -400}
   m_SizeDelta: {x: 650, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902383259
@@ -2005,6 +2015,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0f90edd2987c14886bb32b3d570bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 1
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}
+  button4: {fileID: 0}
 --- !u!114 &1902383260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2201,7 +2216,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -132.00002}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 650, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1983193373
@@ -2301,6 +2316,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0f90edd2987c14886bb32b3d570bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 1
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}
+  button4: {fileID: 0}
 --- !u!1 &2001725724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,7 +2351,8 @@ MonoBehaviour:
   csvFile: {fileID: 4900000, guid: ee1756fe71475574ca8700cf067386dd, type: 3}
   Order2: 
   Score: 0
-  countTime: 10
+  countTime: 20
+  timerStart: 1
 --- !u!224 &2001725726
 RectTransform:
   m_ObjectHideFlags: 0
