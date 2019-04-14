@@ -40,6 +40,7 @@ public class UnityChanController : MonoBehaviour {
 
 
     public void Correct() {
+
         int motionindex = Random.Range(0, 2);//ローカルランダム変数motionindexを作成。０か１がでる。
         int voiceindex = Random.Range(0, 4);//ローカルランダム変数voiceindexを作成。０から3がでる。
         if (motionindex == 0) {

@@ -25,6 +25,9 @@ public class Judge : MonoBehaviour {
     Judge judge3;//Button3のjudgeメソッド
     Judge judge4;//Button4のjudgeメソッド
 
+    private Text result1;
+    private Text result2;
+
     //選択したボタンのテキストラベルと正解のテキストを比較して正誤を判定
     public void CapText() {
         if (buttonEnabled == true) {
@@ -40,6 +43,9 @@ public class Judge : MonoBehaviour {
 
             quizMgr.timerStart = false;//タイマーを停止する
 
+            result1 = GameObject.Find("Question/Result1").GetComponentInChildren<Text>();//Text取得
+            result2 = GameObject.Find("Question/Result2").GetComponentInChildren<Text>();//Text取得
+
 
             //選択したボタンのテキストラベルを取得する
             Text selectedBtn = GetComponentInChildren<Text>();
@@ -49,8 +55,16 @@ public class Judge : MonoBehaviour {
                 Debug.Log("正解");
                 quizMgr.Score += 1;
                 unitychanCon.Correct();
+                result1.color = Color.red;
+                result2.color = Color.red;
+                result1.text = "正解!";
+                result2.text = "C o r r e c t !";
             } else {
                 Debug.Log("不正解");
+                result1.color = Color.blue;
+                result2.color = Color.blue;
+                result1.text = "不正解";
+                result2.text = "W r o n g";
                 unitychanCon.Wrong();
             }
 
@@ -58,7 +72,9 @@ public class Judge : MonoBehaviour {
         }
     }
         public void Qset() {
-            quizmanager = GameObject.Find("QuizManager"); //1問目でタイムオーバーCapTextメソッドを行っていないため必要
+            result1.text = "";
+            result2.text = "";
+            quizmanager = GameObject.Find("QuizManager"); //1問目でタイムオーバーしたときはCapTextメソッドを行っていないため必要
             quizMgr = quizmanager.GetComponent<QuizMgr>();//同上
 
             judge1.buttonEnabled = true;// button1を有効にする

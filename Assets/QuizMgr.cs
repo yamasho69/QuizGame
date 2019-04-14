@@ -6,8 +6,8 @@ using System.Linq;//配列に必要
 using System;//これがないとGuidクラスは使えない
 
 public class QuizMgr: MonoBehaviour {
-    public TextAsset csvFile;	　　　　　// GUIでcsvファイルを割当
-　　　　List<string[]> csvDatas = new List<string[]>(); //ここは参考ブログとは違う
+    public TextAsset csvFile;        // GUIでcsvファイルを割当
+    List<string[]> csvDatas = new List<string[]>(); //ここは参考ブログとは違う
     public static string AnswerStr;//問題の答え
     int[] Order1 = null; //出題数を管理するメンバ変数
     public int[] Order2;　//出題をランダムにするメンバ変数
@@ -23,6 +23,9 @@ public class QuizMgr: MonoBehaviour {
 
     GameObject button1;
     Judge judge;
+
+    private Text result1;
+    private Text result2;
 
 　　　　//スタート時、CSVファイルを読み込む
 　　　　public void Start() {
@@ -60,6 +63,14 @@ public class QuizMgr: MonoBehaviour {
     }
 
         if (countTime <= 0) {
+
+            result1 = GameObject.Find("Question/Result1").GetComponentInChildren<Text>();//Text取得
+            result2 = GameObject.Find("Question/Result2").GetComponentInChildren<Text>();//Text取得
+            result1.color = Color.blue;
+            result2.color = Color.blue;
+            result1.text = "時間切れ";
+            result2.text = "T i m e O v e r";
+
             unitychanCon.TimeUp();
             iTween.Stop();//ゲージの動きをストップさせる
             timerStart = false; //タイマーの動きをストップする
