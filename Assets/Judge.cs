@@ -101,5 +101,9 @@ public class Judge : MonoBehaviour {
         judge4 = button4.GetComponent<Judge>();// button4を押せなくする
         judge4.buttonEnabled = false;
 
+        }
+
+    public void Finish() {
+        unitychanCon.UnityFinish();
     }
 }

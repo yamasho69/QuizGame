@@ -78,7 +78,7 @@ public class QuizMgr: MonoBehaviour {
             judge = button1.GetComponent<Judge>();
             judge.ButtonStop();
             countTime = 0.01f;//カウントが0のままだとNextQuizメソッドが何回も呼び出されてしまう
-            Invoke("TimeOver", 3.0f);//3.0f後にNextQuizメソッドを実行
+            Invoke("TimeOver", 3.0f);//3.0f後にTimeOverメソッドを実行
         }
     }
 
@@ -114,19 +114,36 @@ public class QuizMgr: MonoBehaviour {
 
         Text scorept = GameObject.Find("Quiz/ScorePoint").GetComponentInChildren<Text>();//スコア表示部分を取得
         Text questionno = GameObject.Find("Quiz/QuestionNumber").GetComponentInChildren<Text>();//何問目かの表示部分を取得
+        Text qnumberinscore = GameObject.Find("Quiz/QNumberInScore").GetComponentInChildren<Text>();//スコア表示部の何問目かの表示部分を取得
 
         gauge = GameObject.Find("Timer/Gauge"); //TimeScriptをオブジェクトの名前から取得して変数に格納する
         timeSc = gauge.GetComponent<TimeScript>();//Scはスクリプト、gaugeはオブジェクト
 
         scorept.text = Score.ToString();//得点を更新
-        questionno.text = Count.ToString();//今何問目かを更新
-        countTime = 19.9f;
-        timeSc.time = 19.9f;//ゲージの減少時間を再設定
-        timeSc.Start();//ゲージを最大値に戻すメソッド
-        timerStart = true;//タイマーを動かす
+        if (Count <= 10) {
+            questionno.text = Count.ToString();//今10問目まで今何問かを更新
+            qnumberinscore.text = Count.ToString();//今10問目まで今何問かを更新
+            countTime = 19.9f;
+            timeSc.time = 19.9f;//ゲージの減少時間を再設定
+            timeSc.Start();//ゲージを最大値に戻すメソッド
+            timerStart = true;//タイマーを動かす
+        }
 
         //Debug.Log(Count);
         if(Count == 11) {
+            result1 = GameObject.Find("Question/Result1").GetComponentInChildren<Text>();//Text取得
+            result2 = GameObject.Find("Question/Result2").GetComponentInChildren<Text>();//Text取得
+            result1.color = Color.green;
+            result2.color = Color.green;
+            result1.text = "終了";
+            result2.text = "E n d";
+            unitychanCon.UnityFinish();
+            iTween.Stop();//ゲージの動きをストップさせる
+            timerStart = false; //タイマーの動きをストップする
+            button1 = GameObject.Find("Button1");
+            judge = button1.GetComponent<Judge>();
+            judge.ButtonStop();
+            //Invoke("　", 3.0f);//3.0f後に結果発表シーンに遷移
         } else {QuizSet();}
     }
 }
