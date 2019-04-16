@@ -38,13 +38,12 @@ public class Judge : MonoBehaviour {
 
     //選択したボタンのテキストラベルと正解のテキストを比較して正誤を判定
     public void CapText() {
-        AudioSource[] audioSources = GetComponents<AudioSource>();
-        selectse = audioSources[0];
-        selectse.PlayOneShot(selectse.clip);
-        this.gameObject.GetComponent<Image>().sprite = Bsprite;//選んだ選択肢のボタンを切り替える
         if (buttonEnabled == true) {
             iTween.Stop();//ゲージの動きをストップさせる
-            
+            AudioSource[] audioSources = GetComponents<AudioSource>();
+            selectse = audioSources[0];
+            selectse.PlayOneShot(selectse.clip);
+            this.gameObject.GetComponent<Image>().sprite = Bsprite;//選んだ選択肢のボタンを切り替える
             ButtonStop();
 
             quizmanager = GameObject.Find("QuizManager"); //QuizManagerをオブジェクトの名前から取得して変数に格納する
