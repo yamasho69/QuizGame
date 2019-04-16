@@ -26,6 +26,7 @@ public class QuizMgr: MonoBehaviour {
 
     private Text result1;
     private Text result2;
+    private AudioSource endse;
 
 　　　　//スタート時、CSVファイルを読み込む
 　　　　public void Start() {
@@ -135,6 +136,9 @@ public class QuizMgr: MonoBehaviour {
             result2.color = Color.green;
             result1.text = "終了";
             result2.text = "E n d";
+            AudioSource[] audioSources = GetComponents<AudioSource>();
+            endse = audioSources[0];
+            endse.PlayOneShot(endse.clip);
             unitychanCon.UnityFinish();
             iTween.Stop();//ゲージの動きをストップさせる
             timerStart = false; //タイマーの動きをストップする

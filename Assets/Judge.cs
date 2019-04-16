@@ -6,6 +6,12 @@ using System;
 
 public class Judge : MonoBehaviour {
 
+    Image btnImage;
+
+    // inspectorで直接画像のスプライトを張り付ける
+    public Sprite Asprite;
+    public Sprite Bsprite;
+
     public static Text selectedBtn;
 
     GameObject quizmanager;
@@ -28,11 +34,17 @@ public class Judge : MonoBehaviour {
     private Text result1;
     private Text result2;
 
+    private AudioSource selectse;
+
     //選択したボタンのテキストラベルと正解のテキストを比較して正誤を判定
     public void CapText() {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        selectse = audioSources[0];
+        selectse.PlayOneShot(selectse.clip);
+        this.gameObject.GetComponent<Image>().sprite = Bsprite;//選んだ選択肢のボタンを切り替える
         if (buttonEnabled == true) {
             iTween.Stop();//ゲージの動きをストップさせる
-
+            
             ButtonStop();
 
             quizmanager = GameObject.Find("QuizManager"); //QuizManagerをオブジェクトの名前から取得して変数に格納する
@@ -67,11 +79,12 @@ public class Judge : MonoBehaviour {
                 result2.text = "W r o n g";
                 unitychanCon.Wrong();
             }
-
+            
             Invoke("Qset", 3.0f);//3.0秒後にクイズを読み込む
         }
     }
         public void Qset() {
+            this.gameObject.GetComponent<Image>().sprite = Asprite;//前の問題で選んだ選択肢のボタンを元に戻す
             quizmanager = GameObject.Find("QuizManager"); //1問目でタイムオーバーしたときはCapTextメソッドを行っていないため必要
             quizMgr = quizmanager.GetComponent<QuizMgr>();//同上
 
@@ -85,6 +98,7 @@ public class Judge : MonoBehaviour {
             judge2.buttonEnabled = true;// button2を有効にする
             judge3.buttonEnabled = true;// button3を有効にする
             judge4.buttonEnabled = true;// button4を有効にする
+
             quizMgr.NextQuizSet();
         }//上記で作成したオブジェクトを使用する
 
@@ -104,6 +118,5 @@ public class Judge : MonoBehaviour {
         button4 = GameObject.Find("Button4");
         judge4 = button4.GetComponent<Judge>();// button4を押せなくする
         judge4.buttonEnabled = false;
-
-        }
+    }
 }
