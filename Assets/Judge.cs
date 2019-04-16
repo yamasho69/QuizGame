@@ -72,10 +72,14 @@ public class Judge : MonoBehaviour {
         }
     }
         public void Qset() {
-            result1.text = "";
-            result2.text = "";
             quizmanager = GameObject.Find("QuizManager"); //1問目でタイムオーバーしたときはCapTextメソッドを行っていないため必要
             quizMgr = quizmanager.GetComponent<QuizMgr>();//同上
+
+            result1 = GameObject.Find("Question/Result1").GetComponentInChildren<Text>();//Text取得
+            result2 = GameObject.Find("Question/Result2").GetComponentInChildren<Text>();//Text取得
+
+            result1.text = "";
+            result2.text = "";
 
             judge1.buttonEnabled = true;// button1を有効にする
             judge2.buttonEnabled = true;// button2を有効にする
@@ -102,8 +106,4 @@ public class Judge : MonoBehaviour {
         judge4.buttonEnabled = false;
 
         }
-
-    public void Finish() {
-        unitychanCon.UnityFinish();
-    }
 }

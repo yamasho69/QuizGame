@@ -127,10 +127,8 @@ public class QuizMgr: MonoBehaviour {
             timeSc.time = 19.9f;//ゲージの減少時間を再設定
             timeSc.Start();//ゲージを最大値に戻すメソッド
             timerStart = true;//タイマーを動かす
-        }
-
-        //Debug.Log(Count);
-        if(Count == 11) {
+            QuizSet();
+        }else{
             result1 = GameObject.Find("Question/Result1").GetComponentInChildren<Text>();//Text取得
             result2 = GameObject.Find("Question/Result2").GetComponentInChildren<Text>();//Text取得
             result1.color = Color.green;
@@ -144,6 +142,6 @@ public class QuizMgr: MonoBehaviour {
             judge = button1.GetComponent<Judge>();
             judge.ButtonStop();
             //Invoke("　", 3.0f);//3.0f後に結果発表シーンに遷移
-        } else {QuizSet();}
+        } 
     }
 }
