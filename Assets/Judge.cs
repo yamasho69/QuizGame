@@ -19,6 +19,7 @@ public class Judge : MonoBehaviour {
 
     GameObject unitychan;
     UnityChanController unitychanCon;
+
     public bool buttonEnabled = true;
 
     public GameObject button1;
@@ -26,10 +27,10 @@ public class Judge : MonoBehaviour {
     public GameObject button3;
     public GameObject button4;
 
-    Judge judge1;//Button1のjudgeメソッド
-    Judge judge2;//Button2のjudgeメソッド
-    Judge judge3;//Button3のjudgeメソッド
-    Judge judge4;//Button4のjudgeメソッド
+    Judge judge1;//Button1のjudgeクラス
+    Judge judge2;//Button2のjudgeクラス
+    Judge judge3;//Button3のjudgeクラス
+    Judge judge4;//Button4のjudgeクラス
 
     private Text result1;
     private Text result2;
@@ -72,8 +73,8 @@ public class Judge : MonoBehaviour {
                 result2.text = "C o r r e c t !";
             } else {
                 Debug.Log("不正解");
-                result1.color = Color.blue;
-                result2.color = Color.blue;
+                result1.color = new Color(0f / 255f, 122f / 255f, 255f / 255f);
+                result2.color = new Color(0f / 255f, 122f / 255f, 255f / 255f);
                 result1.text = "不正解";
                 result2.text = "W r o n g";
                 unitychanCon.Wrong();

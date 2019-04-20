@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackGroundController : MonoBehaviour {
 
     // スクロール速度
-    private float scrollSpeed = -0.03f;
+    public float scrollSpeed = -0.03f;
     // 背景終了位置
     private float deadLine = -16;
     // 背景開始位置
