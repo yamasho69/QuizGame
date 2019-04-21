@@ -65,7 +65,7 @@ public class Judge : MonoBehaviour {
             //選択したボタンのテキストラベルと問題の答えを比較
             if (selectedBtn.text == QuizMgr.AnswerStr) {
                 Debug.Log("正解");
-                quizMgr.Score += 1;
+                QuizMgr.Score += 1;
                 unitychanCon.Correct();
                 result1.color = Color.red;
                 result2.color = Color.red;

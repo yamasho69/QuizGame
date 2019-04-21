@@ -12,7 +12,7 @@ public class QuizMgr: MonoBehaviour {
     int[] Order1 = null; //出題数を管理するメンバ変数
     public int[] Order2;　//出題をランダムにするメンバ変数
     public static int Count = 1; //今何問目か
-    public int Score = 0; //得点
+    public static int Score = 0; //得点 staticで他シーンに得点を渡す　http://www.project-unknown.jp/entry/2015/04/11/195351
     public float countTime = 19.9f;
     public bool timerStart = false;//タイマーを動かすか
     GameObject gauge;
@@ -36,6 +36,8 @@ public class QuizMgr: MonoBehaviour {
     int voiceindex; //ランダム変数voiceindexを作成。
 
     void Start() {
+        Count = 1;
+        Score = 0;
         Judge judge = GetComponent<Judge>();
         iTween.Stop();//ゲージの動きをストップさせる
         button1 = GameObject.Find("Button1");
