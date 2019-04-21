@@ -18,32 +18,33 @@ public class StartButton : MonoBehaviour {
     public GameObject exitbutton;
     ExitButton eb;
 
+    private void Start() {
+        startbutton = GameObject.Find("MainCanvas/StartButton");
+        sb = startbutton.GetComponent<StartButton>();
+        creditbutton = GameObject.Find("MainCanvas/CreditButton");
+        cb = creditbutton.GetComponent<Message>();
+        exitbutton = GameObject.Find("MainCanvas/ExitButton");
+        eb = exitbutton.GetComponent<ExitButton>();
+        sb.buttonEnabled = true;// スタートボタン有効
+        cb.buttonEnabled = true;// クレジットボタン有効
+        eb.buttonEnabled = true;//　EXITボタン有効
+    }
+
     public void StartGame() {
         if (buttonEnabled == true) {
             unitychan = GameObject.Find("unitychan");
             unitychanLoco = unitychan.GetComponent<UnityChanLocomotion>();
             unitychanLoco.StartGame();
 
-            startbutton = GameObject.Find("MainCanvas/StartButton");
-            sb = startbutton.GetComponent<StartButton>();
             sb.buttonEnabled = false;// スタートボタン無効
-
-            creditbutton = GameObject.Find("MainCanvas/CreditButton");
-            cb = creditbutton.GetComponent<Message>();
             cb.buttonEnabled = false;// クレジットボタン無効
-
-            exitbutton = GameObject.Find("MainCanvas/ExitButton");
-            eb = exitbutton.GetComponent<ExitButton>();
             eb.buttonEnabled = false;// EXITボタン無効
 
-            Invoke("QuizStart", 3.5f);
+            Invoke("QuizStart", 1.6f);
         }
     }
 
     void QuizStart() {
-        sb.buttonEnabled = true;// スタートボタン有効
-        cb.buttonEnabled = true;// クレジットボタン有効
-        eb.buttonEnabled = true;//　EXITボタン有効
-        SceneManager.LoadScene("QuizScene");
+        FadeManager.Instance.LoadScene("QuizScene", 0.5f);
     }
 }
