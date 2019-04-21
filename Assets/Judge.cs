@@ -94,10 +94,7 @@ public class Judge : MonoBehaviour {
             result1.text = "";
             result2.text = "";
 
-            judge1.buttonEnabled = true;// button1を有効にする
-            judge2.buttonEnabled = true;// button2を有効にする
-            judge3.buttonEnabled = true;// button3を有効にする
-            judge4.buttonEnabled = true;// button4を有効にする
+            ButtonStart();
 
             quizMgr.NextQuizSet();
         }//上記で作成したオブジェクトを使用する
@@ -108,15 +105,22 @@ public class Judge : MonoBehaviour {
         judge1.buttonEnabled = false;// button1を押せなくする
 
         button2 = GameObject.Find("Button2");
-        judge2 = button2.GetComponent<Judge>();// button2を押せなくする
-        judge2.buttonEnabled = false;
+        judge2 = button2.GetComponent<Judge>();
+        judge2.buttonEnabled = false;// button2を押せなくする
 
         button3 = GameObject.Find("Button3");
-        judge3 = button3.GetComponent<Judge>();// button3を押せなくする
-        judge3.buttonEnabled = false;
+        judge3 = button3.GetComponent<Judge>();
+        judge3.buttonEnabled = false;// button3を押せなくする
 
         button4 = GameObject.Find("Button4");
-        judge4 = button4.GetComponent<Judge>();// button4を押せなくする
-        judge4.buttonEnabled = false;
+        judge4 = button4.GetComponent<Judge>();
+        judge4.buttonEnabled = false;// button4を押せなくする
+    }
+
+    public void ButtonStart() {
+        judge1.buttonEnabled = true;// button1を有効にする
+        judge2.buttonEnabled = true;// button2を有効にする
+        judge3.buttonEnabled = true;// button3を有効にする
+        judge4.buttonEnabled = true;// button4を有効にする
     }
 }

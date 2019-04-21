@@ -11,6 +11,8 @@ public class Message : MonoBehaviour {
     public GameObject exitbutton;
     ExitButton eb;
 
+    public bool buttonEnabled = true;//ボタン押下有効
+
     public GameObject MessageWindow;//メッセージウィンドウをゲームオブジェクト型で定義
     // Use this for initialization
 
@@ -26,12 +28,14 @@ public class Message : MonoBehaviour {
     }
 
     public void OnWindow() {
-        MessageWindow.SetActive(true);//オブジェクトを表示する
-        startbutton = GameObject.Find("MainCanvas/StartButton");
-        sb = startbutton.GetComponent<StartButton>();
-        sb.buttonEnabled = false;// スタートボタン無効
-        exitbutton = GameObject.Find("MainCanvas/ExitButton");
-        eb = exitbutton.GetComponent<ExitButton>();
-        eb.buttonEnabled = false;// EXITボタン無効
+        if (buttonEnabled == true) {
+            MessageWindow.SetActive(true);//オブジェクトを表示する
+            startbutton = GameObject.Find("MainCanvas/StartButton");
+            sb = startbutton.GetComponent<StartButton>();
+            sb.buttonEnabled = false;// スタートボタン無効
+            exitbutton = GameObject.Find("MainCanvas/ExitButton");
+            eb = exitbutton.GetComponent<ExitButton>();
+            eb.buttonEnabled = false;// EXITボタン無効
+        }
     }
 }

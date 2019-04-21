@@ -14,6 +14,12 @@ public class ExitButton : MonoBehaviour {
     public GameObject exitbutton;
     ExitButton eb;
 
+    public GameObject creditbutton;
+    Message cb;
+
+    public GameObject startbutton;
+    StartButton sb;
+
     public void ExitGame () {
         if (buttonEnabled == true) {
             unitychan = GameObject.Find("unitychan");
@@ -23,6 +29,14 @@ public class ExitButton : MonoBehaviour {
             exitbutton = GameObject.Find("MainCanvas/ExitButton");
             eb = exitbutton.GetComponent<ExitButton>();
             eb.buttonEnabled = false;// EXITボタン無効
+
+            creditbutton = GameObject.Find("MainCanvas/CreditButton");
+            cb = creditbutton.GetComponent<Message>();
+            cb.buttonEnabled = false;// クレジットボタン無効
+
+            startbutton = GameObject.Find("MainCanvas/StartButton");
+            sb = startbutton.GetComponent<StartButton>();
+            sb.buttonEnabled = false;// スタートボタン無効
 
             Invoke("Quit", 3.5f);
         }
