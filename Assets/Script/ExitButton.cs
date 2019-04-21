@@ -38,7 +38,7 @@ public class ExitButton : MonoBehaviour {
             sb = startbutton.GetComponent<StartButton>();
             sb.buttonEnabled = false;// スタートボタン無効
 
-            Invoke("Quit", 2.2f);
+            Invoke("Quit", 2.4f);
         }
 	}
 

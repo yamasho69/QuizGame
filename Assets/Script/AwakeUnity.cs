@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 //FadeManagerのDebugModeのチェックは外すこと
 
 public class AwakeUnity : MonoBehaviour {
-    private AudioSource Licensevoice;
+    //private AudioSource Licensevoice;
 
     // Use this for initialization
     void Start () {
         //AudioSourceコンポーネントを取得し、変数に格納
         AudioSource[] audioSources = GetComponents<AudioSource>();
-        Licensevoice = audioSources[0];
-        Licensevoice.PlayOneShot(Licensevoice.clip);
-        Invoke("GoToTitle", 3.5f);
+        //Licensevoice = audioSources[0];
+        //Licensevoice.PlayOneShot(Licensevoice.clip);
+        Invoke("GoToTitle", 0.5f);//ボイスありなら3.5f
     }
 	
 	// Update is called once per frame
