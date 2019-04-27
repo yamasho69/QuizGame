@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+//参考ブログ　https://materializer.co/lab/blog/139
+//フェードイン・フェードアウトを使うシーンには必ずヒエラルキーにFadeManagerを入れること
 
 public class StartButton : MonoBehaviour {
 

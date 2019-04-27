@@ -209,7 +209,12 @@ public class QuizMgr: MonoBehaviour {
             button1 = GameObject.Find("Button1");
             judge = button1.GetComponent<Judge>();
             judge.ButtonStop();
-            //Invoke("　", 3.0f);//3.0f後に結果発表シーンに遷移
+            FadeManager.Instance.LoadScene("ResultScene", 4.0f); ;//4.0f後に結果発表シーンに遷移
         } 
+    }
+
+//得点を結果シーンに渡すメソッド
+public static int GetScore() {
+        return Score;
     }
 }
