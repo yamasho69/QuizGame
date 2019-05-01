@@ -27,6 +27,10 @@ public class Judge : MonoBehaviour {
     public GameObject button3;
     public GameObject button4;
 
+
+    GameObject stopButton;
+    StopMgr stopMgr;
+
     Judge judge1;//Button1のjudgeクラス
     Judge judge2;//Button2のjudgeクラス
     Judge judge3;//Button3のjudgeクラス
@@ -39,8 +43,13 @@ public class Judge : MonoBehaviour {
 
     //選択したボタンのテキストラベルと正解のテキストを比較して正誤を判定
     public void CapText() {
-        if (buttonEnabled == true) {
+        if (this.buttonEnabled == true) {
             iTween.Stop();//ゲージの動きをストップさせる
+
+            stopButton = GameObject.Find("Quiz/StopButton");
+            stopMgr = stopButton.GetComponent<StopMgr>();
+            stopMgr.buttonEnabled = false;　//ジャッジ中に一時停止されると、次の問題を読み込まなくなるため、無効にする。
+
             AudioSource[] audioSources = GetComponents<AudioSource>();
             selectse = audioSources[0];
             selectse.PlayOneShot(selectse.clip);

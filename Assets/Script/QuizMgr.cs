@@ -24,6 +24,9 @@ public class QuizMgr: MonoBehaviour {
     GameObject button1;
     Judge judge;
 
+    GameObject stopButton;
+    StopMgr stopMgr;
+
     private Text result1;
     private Text result2;
     private AudioSource endse;
@@ -86,9 +89,14 @@ public class QuizMgr: MonoBehaviour {
 　　　　public void SetUp() {
 
         Judge judge = GetComponent<Judge>();
-        button1 = GameObject.Find("Button1");
+        button1 = GameObject.Find("Quiz/Button1");
         judge = button1.GetComponent<Judge>();
         judge.ButtonStart();
+
+        StopMgr stopMgr = GetComponent<StopMgr>();
+        stopButton = GameObject.Find("Quiz/StopButton");
+        stopMgr = stopButton.GetComponent<StopMgr>();
+        stopMgr.buttonEnabled = true;　//一時停止ボタン押下有効
 
         gauge = GameObject.Find("Timer/Gauge"); //TimeScriptをオブジェクトの名前から取得して変数に格納する
         timeSc = gauge.GetComponent<TimeScript>();//Scはスクリプト、gaugeはオブジェクト
@@ -126,6 +134,9 @@ public class QuizMgr: MonoBehaviour {
     }
 
         if (countTime <= 0) {
+
+            stopMgr = stopButton.GetComponent<StopMgr>();
+            stopMgr.buttonEnabled = false;　//タイムオーバー中に一時停止されると、次の問題を読み込まなくなるため、無効にする。
 
             result1 = GameObject.Find("Question/Result1").GetComponentInChildren<Text>();//Text取得
             result2 = GameObject.Find("Question/Result2").GetComponentInChildren<Text>();//Text取得
@@ -176,7 +187,6 @@ public class QuizMgr: MonoBehaviour {
     }
     public void NextQuizSet() {
         Count++;
-
         Text scorept = GameObject.Find("Quiz/ScorePoint").GetComponentInChildren<Text>();//スコア表示部分を取得
         Text questionno = GameObject.Find("Quiz/QuestionNumber").GetComponentInChildren<Text>();//何問目かの表示部分を取得
         Text qnumberinscore = GameObject.Find("Quiz/QNumberInScore").GetComponentInChildren<Text>();//スコア表示部の何問目かの表示部分を取得
@@ -186,6 +196,10 @@ public class QuizMgr: MonoBehaviour {
 
         scorept.text = Score.ToString();//得点を更新
         if (Count <= 10) {
+
+            stopMgr = stopButton.GetComponent<StopMgr>();
+            stopMgr.buttonEnabled = true;　//一時停止ボタン押下有効
+
             questionno.text = Count.ToString();//今10問目まで今何問かを更新
             qnumberinscore.text = Count.ToString();//今10問目まで今何問かを更新
             countTime = 19.9f;
@@ -213,8 +227,16 @@ public class QuizMgr: MonoBehaviour {
         } 
     }
 
-//得点を結果シーンに渡すメソッド
-public static int GetScore() {
+    //得点を結果シーンに渡すメソッド
+    public static int GetScore() {
         return Score;
+    }
+    
+    //ポーズメニューで再開ボタンを押したときのメソッド
+    public void Resume() {
+        gauge = GameObject.Find("Timer/Gauge"); //TimeScriptをオブジェクトの名前から取得して変数に格納する
+        timeSc = gauge.GetComponent<TimeScript>();//Scはスクリプト、gaugeはオブジェクト
+        timeSc.time = countTime;//タイムゲージがなくなるのに必要な時間＝現在の残り時間に書き換える
+        timeSc.Resume();//ゲージを最大値に戻さず再開させるメソッド
     }
 }
