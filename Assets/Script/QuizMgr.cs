@@ -116,7 +116,7 @@ public class QuizMgr: MonoBehaviour {
 
         Order1 = new int[csvDatas.Count];　//配列の要素数をCSVの行数分にする
         //配列に順番に数字を入れる
-        for(int i = 0; i < csvDatas.Count-1; i++) {
+        for(int i = 0; i < csvDatas.Count; i++) {
             Order1[i] = i;
         }
         //配列の数字をランダムに入れ替えた配列を作成
