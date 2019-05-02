@@ -12,15 +12,15 @@ public class AwakeUnity : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //AudioSourceコンポーネントを取得し、変数に格納
-        AudioSource[] audioSources = GetComponents<AudioSource>();
+        //AudioSource[] audioSources = GetComponents<AudioSource>();
         //Licensevoice = audioSources[0];
         //Licensevoice.PlayOneShot(Licensevoice.clip);
-        Invoke("GoToTitle", 0.5f);//ボイスありなら3.5f
+        Invoke("GoToTitle", 0.01f);//ボイスありなら3.5f
     }
 	
 	// Update is called once per frame
 	void GoToTitle() {
-        FadeManager.Instance.LoadScene("TitleScene", 0.5f);
+        FadeManager.Instance.LoadScene("TitleScene", 0.3f);
         Destroy(this.gameObject);
     }
 }

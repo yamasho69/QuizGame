@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExitButton2 : MonoBehaviour {
 
     public bool buttonEnabled = true;//ボタン押下有効
+    public bool exitOk = false;//終了可能
 
     public GameObject retrybutton;
     RetryButton rb;
@@ -15,8 +16,11 @@ public class ExitButton2 : MonoBehaviour {
     public GameObject exitbutton2;
     ExitButton2 eb2;
 
+    GameObject unitychan;
+    ResultMgr resultMgr;
+
     public void ExitGame() {
-        if (buttonEnabled == true) {
+        if (buttonEnabled == true && exitOk == true) {
             retrybutton = GameObject.Find("ResultCanvas/RetryButton");
             rb = retrybutton.GetComponent<RetryButton>();
             rb.buttonEnabled = false;// リトライボタン無効
@@ -29,9 +33,17 @@ public class ExitButton2 : MonoBehaviour {
             eb2 = exitbutton2.GetComponent<ExitButton2>();
             eb2.buttonEnabled = false;// EXITボタン無効
 
-            Invoke("Quit", 2.4f);
+            unitychan = GameObject.Find("unitychan");
+            resultMgr = unitychan.GetComponent<ResultMgr>();
+            Invoke("BeforeQuit", 0.8f);
         }
     }
+    private void BeforeQuit() {
+        resultMgr.Exit();//Exitアクション
+        Invoke("Quit", 2.0f);
+    }
+
+
     void Quit() {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

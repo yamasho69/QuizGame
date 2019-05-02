@@ -15,6 +15,8 @@ public class ResultMgr : MonoBehaviour {
     private AudioSource excellentvoice;
     private AudioSource atochottovoice;
     private AudioSource shockvoice;
+    private AudioSource byebyevoice;
+    private AudioSource sorejyanevoice;
 
     GameObject verygoodimage;
     GameObject goodimage;
@@ -23,6 +25,9 @@ public class ResultMgr : MonoBehaviour {
     public GameObject retrybutton;//非アクティブのオブジェクトはFindでは見つからないので、パブリックにして、エディタで登録
     public GameObject titlebutton;//同上
     public GameObject exitbutton;//同上
+
+    ExitButton2 eb2;
+
 
     private Text scoreText;
 
@@ -40,6 +45,8 @@ public class ResultMgr : MonoBehaviour {
         excellentvoice = audioSources[2];
         atochottovoice = audioSources[3];
         shockvoice = audioSources[4];
+        byebyevoice = audioSources[5];
+        sorejyanevoice = audioSources[6];
 
         scoreText = GameObject.Find("ResultCanvas/Panel/ScoreText").GetComponentInChildren<Text>();//Text取得
 
@@ -75,5 +82,21 @@ public class ResultMgr : MonoBehaviour {
             tinse.PlayOneShot(tinse.clip);
             shockvoice.PlayOneShot(shockvoice.clip);
         }
+        Invoke("ExitOk", 0.5f);
 	}
+
+    void ExitOk() {
+        exitbutton = GameObject.Find("ResultCanvas/ExitButton");
+        eb2 = exitbutton.GetComponent<ExitButton2>();
+        eb2.exitOk = true;
+    }
+
+    public void Exit() {
+        GetComponent<Animator>().SetTrigger("ByeByeTrigger");
+        int voiceindex = Random.Range(0, 2);//ローカルランダム変数voiceindexを作成。０から1がでる。
+        if (voiceindex == 0) {
+            byebyevoice.PlayOneShot(byebyevoice.clip);
+        }
+        else { sorejyanevoice.PlayOneShot(sorejyanevoice.clip); }
+    }
 }

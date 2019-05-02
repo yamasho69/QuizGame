@@ -18,6 +18,8 @@ public class UnityChanController : MonoBehaviour {
     private AudioSource sonnaavoice;
     private AudioSource owarivoice;
     private AudioSource sokomadevoice;
+    private AudioSource byebyevoice;
+    private AudioSource sorejyanevoice;
 
     public int idleindex;
 
@@ -39,6 +41,9 @@ public class UnityChanController : MonoBehaviour {
         sonnaavoice = audioSources[11];
         owarivoice = audioSources[12];
         sokomadevoice = audioSources[13];
+        byebyevoice = audioSources[14];
+        sorejyanevoice = audioSources[15];
+
 
         if (idleindex == 1) {
             GetComponent<Animator>().SetTrigger("Idle01Trigger");
@@ -102,5 +107,15 @@ public class UnityChanController : MonoBehaviour {
             owarivoice.PlayOneShot(owarivoice.clip);
         }
         else {sokomadevoice.PlayOneShot(sokomadevoice.clip); }
+    }
+
+    public void UnityExit() {
+        transform.rotation = Quaternion.AngleAxis(180, new Vector3(0, 1, 0));//180度の方向に向かせる
+        int voiceindex = Random.Range(0, 2);//ローカルランダム変数voiceindexを作成。０から1がでる。
+        GetComponent<Animator>().SetTrigger("SmileTrigger");
+        if (voiceindex == 0) {
+            byebyevoice.PlayOneShot(byebyevoice.clip);
+        }
+        else { sorejyanevoice.PlayOneShot(sorejyanevoice.clip); }
     }
 }

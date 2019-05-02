@@ -18,6 +18,9 @@ public class QuizToExit : MonoBehaviour {
     public GameObject resumebutton;
     Resume resume;
 
+    GameObject unitychan;
+    UnityChanController unitychanCon;
+
     public void Click() {
         if (buttonEnabled == true) {
             retrybutton = GameObject.Find("Question/Stop/RetryButton");
@@ -35,7 +38,13 @@ public class QuizToExit : MonoBehaviour {
             resumebutton = GameObject.Find("Question/Stop/ResumeButton");
             resume = resumebutton.GetComponent<Resume>();
             resume.buttonEnabled = false;// 再開ボタン無効
-            Invoke("Quit", 1.0f);
+
+            unitychan = GameObject.Find("unitychan");
+            unitychanCon = unitychan.GetComponent<UnityChanController>();
+
+            unitychanCon.UnityExit();
+
+            Invoke("Quit", 2.0f);
         }
     }
     void Quit() {
