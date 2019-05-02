@@ -10,6 +10,7 @@ public class UnityChanLocomotion : MonoBehaviour {
     private AudioSource otsukarevoice;
     private AudioSource byebyevoice;
     private AudioSource sorejyanevoice;
+    private AudioSource bgm;
 
     GameObject Bg1;
     BackGroundController Bgc1;
@@ -26,6 +27,8 @@ public class UnityChanLocomotion : MonoBehaviour {
         otsukarevoice = audioSources[3];
         byebyevoice = audioSources[4];
         sorejyanevoice = audioSources[5];
+        bgm = audioSources[6];
+        bgm.PlayOneShot(bgm.clip);
     }
     public void StartGame() {
         ScrollStop();

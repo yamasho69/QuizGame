@@ -21,11 +21,11 @@ public class StartButton : MonoBehaviour {
     ExitButton eb;
 
     private void Start() {
-        startbutton = GameObject.Find("MainCanvas/StartButton");
+        //startbutton = GameObject.Find("MainCanvas/StartButton");
         sb = startbutton.GetComponent<StartButton>();
-        creditbutton = GameObject.Find("MainCanvas/CreditButton");
+        //creditbutton = GameObject.Find("MainCanvas/CreditButton");
         cb = creditbutton.GetComponent<Message>();
-        exitbutton = GameObject.Find("MainCanvas/ExitButton");
+        //exitbutton = GameObject.Find("MainCanvas/ExitButton");
         eb = exitbutton.GetComponent<ExitButton>();
         sb.buttonEnabled = true;// スタートボタン有効
         cb.buttonEnabled = true;// クレジットボタン有効
