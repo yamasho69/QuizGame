@@ -20,7 +20,7 @@ public class AwakeUnity : MonoBehaviour {
 	
 	// Update is called once per frame
 	void GoToTitle() {
-        FadeManager.Instance.LoadScene("TitleScene", 0.3f);
+        FadeManager.Instance.LoadScene("TitleScene", 0.5f);
         Destroy(this.gameObject);
     }
 }

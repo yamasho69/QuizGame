@@ -22,9 +22,8 @@ public class ResultMgr : MonoBehaviour {
     GameObject goodimage;
     GameObject badimage;
 
-    public GameObject retrybutton;//非アクティブのオブジェクトはFindでは見つからないので、パブリックにして、エディタで登録
-    public GameObject titlebutton;//同上
-    public GameObject exitbutton;//同上
+    public GameObject buttoncanvas;//非アクティブのオブジェクトはFindでは見つからないので、パブリックにして、エディタで登録
+    public GameObject exitbutton;
 
     ExitButton2 eb2;
 
@@ -55,9 +54,7 @@ public class ResultMgr : MonoBehaviour {
 	
 	// Update is called once per frame
 	void ResultAction() {
-        retrybutton.SetActive(true);//ボタンを表示に
-        titlebutton.SetActive(true);//ボタンを表示に
-        exitbutton.SetActive(true);//ボタンを表示に
+        buttoncanvas.SetActive(true);//ボタンを表示に
 
         if (resultScore >= 9) {
             scoreText.color = Color.blue;
@@ -86,7 +83,6 @@ public class ResultMgr : MonoBehaviour {
 	}
 
     void ExitOk() {
-        exitbutton = GameObject.Find("ResultCanvas/ExitButton");
         eb2 = exitbutton.GetComponent<ExitButton2>();
         eb2.exitOk = true;
     }

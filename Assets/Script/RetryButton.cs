@@ -17,15 +17,12 @@ public class RetryButton : MonoBehaviour {
 
     public void ExitGame() {
         if (buttonEnabled == true) {
-            retrybutton = GameObject.Find("ResultCanvas/RetryButton");
             rb = retrybutton.GetComponent<RetryButton>();
             rb.buttonEnabled = false;// リトライボタン無効
 
-            titlebutton = GameObject.Find("ResultCanvas/TitleButton");
             tb = titlebutton.GetComponent<TitleButton>();
             tb.buttonEnabled = false;// タイトルボタン無効
 
-            exitbutton2 = GameObject.Find("ResultCanvas/ExitButton");
             eb2 = exitbutton2.GetComponent<ExitButton2>();
             eb2.buttonEnabled = false;// EXITボタン無効
 
