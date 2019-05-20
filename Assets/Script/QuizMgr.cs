@@ -178,12 +178,14 @@ public class QuizMgr: MonoBehaviour {
             Text button2 = GameObject.Find("Quiz/Button2").GetComponentInChildren<Text>();
             Text button3 = GameObject.Find("Quiz/Button3").GetComponentInChildren<Text>();
             Text button4 = GameObject.Find("Quiz/Button4").GetComponentInChildren<Text>();
-            //データをセットすることで、既存情報を上書きできる
+            Text genre = GameObject.Find("Question/Genre").GetComponentInChildren<Text>();
+        //データをセットすることで、既存情報を上書きできる
             question.text = csvDatas[Order2[Count]][0];//問題文セット
             button1.text = csvDatas[Order2[Count]][ary2[0]];//ary2の１番目に入っている数字の項目をボタン１にセット
             button2.text = csvDatas[Order2[Count]][ary2[1]];//ary2の２番目に入っている数字の項目をボタン２にセット
             button3.text = csvDatas[Order2[Count]][ary2[2]];//ary2の３番目に入っている数字の項目をボタン３にセット
             button4.text = csvDatas[Order2[Count]][ary2[3]];//ary2の４番目に入っている数字の項目をボタン４にセット
+            genre.text = csvDatas[Order2[Count]][5];//ジャンルセット
     }
     public void NextQuizSet() {
         Count++;
