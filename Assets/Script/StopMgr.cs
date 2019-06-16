@@ -16,6 +16,7 @@ public class StopMgr : MonoBehaviour {
     public GameObject Question;//非アクティブではないが、同上
     public GameObject Result1;
     public GameObject Result2;
+    public GameObject Genre;
     public GameObject Button1;
     public GameObject Button2;
     public GameObject Button3;
@@ -33,6 +34,7 @@ public class StopMgr : MonoBehaviour {
             Question.SetActive(false);
             Result1.SetActive(false);
             Result2.SetActive(false);
+            Genre.SetActive(false);
             Button1.SetActive(false);
             Button2.SetActive(false);
             Button3.SetActive(false);
@@ -48,6 +50,7 @@ public class StopMgr : MonoBehaviour {
         Question.SetActive(true);
         Result1.SetActive(true);
         Result2.SetActive(true);
+        Genre.SetActive(true);
         Button1.SetActive(true);
         Button2.SetActive(true);
         Button3.SetActive(true);
