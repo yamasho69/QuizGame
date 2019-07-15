@@ -22,7 +22,7 @@ public class Message : MonoBehaviour {
         startbutton = GameObject.Find("MainCanvas/StartButton");
         sb = startbutton.GetComponent <StartButton>();
         sb.buttonEnabled = true;// スタートボタン有効
-        //exitbutton = GameObject.Find("MainCanvas/ExitButton");
+        exitbutton = GameObject.Find("MainCanvas/ExitButton");
         eb = exitbutton.GetComponent<ExitButton>();
         eb.buttonEnabled = true;// EXITボタン有効
     }
