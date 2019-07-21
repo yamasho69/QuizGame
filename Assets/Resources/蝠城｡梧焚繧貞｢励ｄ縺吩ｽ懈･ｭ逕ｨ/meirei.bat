@@ -1,1 +1,0 @@
-copy *.csv purequestion.csv

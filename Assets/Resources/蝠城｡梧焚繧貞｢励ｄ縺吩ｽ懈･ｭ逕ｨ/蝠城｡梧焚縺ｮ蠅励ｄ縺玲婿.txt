@@ -1,7 +1,0 @@
-1.問題数を増やす作業用フォルダを開く
-2.各ジャンルのcsvファイルで作業。
-3.meirei.batを実行。purequestion.csvができる。
-4.purequestion.csvを開く。
-5.データ→外部データの取り込み→purequestion→次へ→文字列の引用符｛なし｝
-6.列のデータ形式｛文字列｝→完了→新規ワークシート
-7.新規ワークシートの内容を「Visual Studio上で」(最重要)、question.csvに上書きする。
